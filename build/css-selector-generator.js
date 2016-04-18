@@ -73,7 +73,7 @@
       id = element.getAttribute('id');
       if ((id != null) && (id !== '') && !(/\s/.exec(id)) && !(/^\d/.exec(id))) {
         sanitized_id = "#" + (this.sanitizeItem(id));
-        if (document.querySelectorAll(sanitized_id).length === 1) {
+        if (element.ownerDocument.querySelectorAll(sanitized_id).length === 1) {
           return sanitized_id;
         }
       }
@@ -278,6 +278,7 @@
         items = [];
       }
       result = [[]];
+      items = items.slice(0, 6);
       for (i = k = 0, ref = items.length - 1; 0 <= ref ? k <= ref : k >= ref; i = 0 <= ref ? ++k : --k) {
         for (j = l = 0, ref1 = result.length - 1; 0 <= ref1 ? l <= ref1 : l >= ref1; j = 0 <= ref1 ? ++l : --l) {
           result.push(result[j].concat(items[i]));

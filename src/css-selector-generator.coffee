@@ -202,6 +202,8 @@ class CssSelectorGenerator
     # first item must be empty (seed), it will be removed later
     result = [[]]
 
+    items = items.slice 0,6
+
     for i in [0..items.length - 1]
       for j in [0..result.length - 1]
         result.push result[j].concat items[i]
