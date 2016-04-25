@@ -3,6 +3,8 @@
     indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   CssSelectorGenerator = (function() {
+    var ValidClass;
+
     CssSelectorGenerator.prototype.default_options = {
       selectors: ['id', 'class', 'tag', 'nthchild']
     };
@@ -80,6 +82,8 @@
       return null;
     };
 
+    ValidClass = /^\.[_a-zA-Z]+[_a-zA-Z0-9-\\\s]*$/;
+
     CssSelectorGenerator.prototype.getClassSelectors = function(element) {
       var class_string, item, result;
       result = [];
@@ -100,6 +104,9 @@
           }).call(this);
         }
       }
+      result = result.filter(function(name) {
+        return name.match(ValidClass);
+      });
       return result;
     };
 

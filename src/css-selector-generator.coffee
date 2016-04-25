@@ -65,6 +65,8 @@ class CssSelectorGenerator
 
     null
 
+  ValidClass = /^\.[_a-zA-Z]+[_a-zA-Z0-9-\\\s]*$/
+
   getClassSelectors: (element) ->
     result = []
     class_string = element.getAttribute 'class'
@@ -76,6 +78,8 @@ class CssSelectorGenerator
       if class_string isnt ''
         result = for item in class_string.split /\s+/
           ".#{@sanitizeItem item}"
+
+    result = result.filter (name) -> name.match ValidClass
     result
 
   getAttributeSelectors: (element) ->
